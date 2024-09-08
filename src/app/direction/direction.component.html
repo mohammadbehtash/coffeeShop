@@ -1,0 +1,15 @@
+<div class="flex items-center gap-x-4 px-6 text-zinc-600 dark:text-white dark:bg-zinc-600 bg-white shadow-md mb-10  h-10 rounded-lg">
+    <p><a [routerLink]="['/']">صفحه اصلی</a></p><span>/</span><p>
+        @if (pathParts[0]=='product' || pathParts[0]=='product-one') {
+            <a [routerLink]="['/product']">{{'محصولات'}}</a>
+        }@else if (pathParts[0]=='cart') {
+            <a [routerLink]="['/cart']">{{'سبد خرید'}}</a>
+        }@else if (pathParts[0]=='articles'||pathParts[0]=='article') {
+            <a [routerLink]="['/articles']"> {{'مقالات'}}</a>
+        }
+   </p>
+    @if(item){
+
+        <span>/</span><p><a >{{item}}</a></p>
+    }
+</div>

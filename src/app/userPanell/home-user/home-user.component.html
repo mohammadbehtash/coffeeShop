@@ -1,0 +1,103 @@
+<div class="mt-5 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+    <div class="mojody text-white md:text-base text-sm bg-amber-400  rounded-xl p-5 text-center">
+        <h2>مجموع پرداخت</h2>
+        <hr>
+        <h3>{{order && order.totalAmount? order.totalAmount:'0'}}</h3>
+    </div>
+
+    <div class="moshavereh  text-white md:text-base text-sm bg-pink-500  rounded-xl p-5 text-center">
+        <h2>سفارشات</h2>
+        <hr>
+        <h3>{{order && order.products? order.products.length:'0'}}</h3>
+    </div>
+    <div class="moshavereh  text-white md:text-base text-sm bg-sky-500  rounded-xl p-5 text-center">
+        <h2>ورود با مرورگر</h2>
+        <hr>
+        <h3>{{browserInfo}}</h3>
+    </div>
+    <div class="moshavereh  text-white md:text-base text-sm bg-green-500  rounded-xl p-5 text-center">
+        <h2>ای پی کاربر</h2>
+        <hr>
+        <h3>{{userIp}}</h3>
+    </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-5">
+    <div class="">
+        <div class="text-white p-5 flex items-center justify-between bg-gray-100 dark:bg-zinc-800 mt-6 rounded-xl">
+            <h5 class="dark:text-white text-zinc-700">پیشنهاد ها</h5>
+            <a [routerLink]="['/product']" class="text-gray-400" href="">دیدن همه</a>
+        </div>
+        <div class="grid grid-cols-2 gap-6 mt-5 ">
+            @for (item of bestSeller; track $index) {
+            <div class="flex flex-col bg-gray-100 dark:bg-zinc-800 rounded-lg p-3">
+                <div class="mb-2 md:mb-5 relative ">
+                    <img class=" w-32 mx-auto " [src]="'http://localhost:4000/img/'+item.cover" alt="">
+                    <span
+                        class="absolute top-1.5 right-1.5 bg-orange-300 px-2.5 md:px-3.5 hidden h-5 md:h-[30px]  text-xs md:text-base/[34px] rounded-full leading-5 dark:text-zinc-700 text-white">20%</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <h5 class="dark:text-white  md:text-xl text-sm text-zinc-700 line-clamp-2  ">{{item.title}}</h5>
+                    <div class="flex items-start gap-x-2 md:gap-x-2.5 mt-1.5 md:mt-2.5 ">
+                        @if(item.number){
+
+                        @if (item.discount) {
+                        <div class="text-teal-600 dark:text-emerald-500 ">
+                            <span class="text-base md:text-xl">{{(item.price - (item.price * item.discount /
+                                100))}}</span>
+                            <span class="text-xs md:text-sm tracking-tighter ">تومان</span>
+                        </div>
+                        <div class="offer flex">
+                            <span class="text-base md:text-xl">{{item.price}}</span>
+                            <span class="text-sm hidden xl:block tracking-tighter ">تومان</span>
+                        </div>
+                        }@else {
+                        <div class="text-teal-600 dark:text-emerald-500 ">
+                            <span class="text-base md:text-xl">{{item.price}}</span>
+                            <span class="text-xs md:text-sm tracking-tighter ">تومان</span>
+                        </div>
+                        }
+                        }@else {
+                        <p class="text-red-600 text-xl">ناموجود</p>
+                        }
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            }
+
+        </div>
+    </div>
+    <div class="">
+        <div class="text-white p-5 flex items-center justify-between bg-gray-100 dark:bg-zinc-800 mt-6 rounded-xl">
+            <h5 class="dark:text-white text-zinc-700">آخرین سفارشات</h5>
+            <a [routerLink]="['./orders']" class="text-gray-400" href="">دیدن همه</a>
+        </div>
+        <div class="mt-5 p-5 text-white text-lg rounded-lg bg-gray-100 dark:bg-zinc-800">
+            @if (order && order.products) {
+            @for (item of order.products.slice(0,4); track $index) {
+            <div class="flex my-4 items-center justify-between border-b">
+                <a class="dark:text-white md:text-xl text-sm text-zinc-700 line-clamp-2 ">{{item.productName}}</a>
+
+                <span class="text-sm dark:text-white text-zinc-700">تعداد خرید: {{item.quantity}}</span>
+                <span class="text-sm dark:text-white text-zinc-700"> تاریخ خرید: {{item.date|jalaliDateSimple}}</span>
+                <span class="text-sm dark:text-white text-zinc-700"> قیمت: {{item.price}}</span>
+
+            </div>
+            }
+
+            }
+
+
+
+            <!-- <div class="flex my-4 items-center justify-between">
+            <a class="dark:text-white   md:text-xl text-sm text-zinc-700 line-clamp-2 ">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+            <span class="text-xs dark:text-white text-zinc-700">1403/5/29</span>
+           </div> -->
+
+        </div>
+    </div>
+
+</div>

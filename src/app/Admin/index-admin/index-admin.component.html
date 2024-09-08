@@ -1,0 +1,324 @@
+<section class="grid grid-cols-1 md:grid-cols-10">
+    <div class="">
+        <div (click)="toogleNav(true)" class="sm:hidden block py-4 pr-5 ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+
+        </div>
+        <div class="absolute">
+            <!-- menu mobail -->
+            <div [ngClass]="{'right-0':opennav}"
+                class="flex flex-col justify-between sm:hidden w-40 bg-white shadow-normal h-screen fixed top-0 transition-all -right-40">
+                <div class="">
+                    <div class="flex items-center justify-between p-2">
+                        <div class="text-orange-300 w-6 h-6">
+                            <svg id="simbol" viewBox="0 0 57 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22.3235 0.00137901C22.0516 0.0171261 21.9701 0.0238752 21.7911 0.0463715C21.5278 0.0789919 21.2467 0.134109 20.9948 0.202723C20.8848 0.233093 20.6328 0.314643 20.6345 0.319705C20.6357 0.321955 20.6967 0.364136 20.7708 0.413066C21.9615 1.20326 22.95 2.19985 23.724 3.38936C24.4411 4.49057 25.0026 5.75544 25.5156 7.42524C25.7231 8.1007 25.8856 8.69011 26.2281 10.0146C26.6175 11.5191 26.7782 12.1012 27.0096 12.8435C27.0872 13.0904 27.2502 13.5781 27.3254 13.7856C27.4765 14.204 27.6771 14.7046 27.8231 15.0257L27.8373 15.0566L27.8436 15.0341C27.847 15.0218 27.8664 14.947 27.8869 14.8677C28.1411 13.8688 28.1731 12.8177 27.9861 11.5612C27.9017 10.9909 27.8031 10.514 27.5278 9.33408C27.3574 8.60406 27.3203 8.4404 27.2479 8.09114C27.0319 7.05461 26.9378 6.21774 26.9521 5.46748C26.9543 5.34656 26.9578 5.22789 26.9595 5.20371L26.9635 5.15872L28.2169 9.41338C28.9061 11.753 29.471 13.6686 29.4721 13.6697C29.4738 13.6714 36.114 9.94373 36.1226 9.93642C36.1277 9.93136 35.9025 9.48537 35.8073 9.31158C34.2791 6.52707 31.4336 3.67113 28.3902 1.86747C26.8238 0.938923 25.2796 0.33714 23.8683 0.105425C23.5895 0.0593071 23.337 0.0306244 23.0275 0.00868988C22.9437 0.00306606 22.3959 -0.00255871 22.3235 0.00137901Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M17.111 2.79365C16.598 2.82571 16.0878 2.99893 15.6318 3.29645C14.9848 3.71882 14.4462 4.3999 14.0722 5.26939C13.9331 5.59278 13.7519 6.1237 13.6253 6.58095C13.3466 7.5871 13.1556 8.69168 13.0074 10.1579C12.955 10.6742 12.9208 11.0696 12.8359 12.1432C12.7515 13.2112 12.7036 13.7455 12.6472 14.2663C12.6318 14.4075 12.6255 14.489 12.6272 14.5121C12.6392 14.6325 12.7287 14.7781 12.9134 14.9778C12.9476 15.0149 13.0718 15.1414 13.1893 15.259C13.419 15.4885 13.5204 15.5953 13.6162 15.7055C13.6493 15.7444 13.6823 15.782 13.6892 15.7899C13.7011 15.8034 13.7017 15.804 13.7023 15.7933C13.7023 15.7865 13.8676 14.0453 14.0699 11.9239C14.2723 9.80189 14.4701 7.72377 14.51 7.30646C14.5493 6.88859 14.5824 6.54664 14.5824 6.54664C14.583 6.54607 14.6867 6.56182 14.8138 6.58151C14.9409 6.60119 15.0453 6.6175 15.0458 6.6175C15.047 6.6175 15.0481 8.58089 15.0487 10.9801L15.0504 15.3434L16.4241 15.6932C22.8363 17.3281 24.5509 17.7651 24.5526 17.7634C24.5532 17.7623 24.5247 17.62 24.4899 17.4468C24.4546 17.2736 24.3805 16.8928 24.3246 16.6004C24.0989 15.4097 24.0299 15.0672 23.9136 14.5706C23.8099 14.1274 23.7341 13.8451 23.5864 13.358C23.4177 12.8001 23.3351 12.5161 22.9566 11.1843C22.4042 9.24116 22.077 8.22376 21.6683 7.18273C21.3309 6.32167 20.9022 5.42518 20.5836 4.91339C20.2581 4.3909 19.8596 3.93254 19.4356 3.5934C18.7219 3.02255 17.913 2.74416 17.111 2.79365Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M45.2182 11.0662C43.5657 11.1185 41.8385 11.3913 40.0509 11.8817C36.3726 12.8913 32.8858 14.7 30.4581 16.8585C30.1788 17.1066 29.7165 17.5548 29.4953 17.7916C28.8905 18.4389 28.4294 19.0379 28.0303 19.6937C28.0064 19.7325 27.9882 19.7645 27.9893 19.7657C27.9899 19.7668 28.0241 19.7645 28.064 19.7612C28.7417 19.7038 29.3841 19.4991 30.1411 19.0986C30.8428 18.728 31.8062 18.1965 33.376 17.313C34.6608 16.5903 35.073 16.3597 35.5962 16.0706C37.8809 14.8085 39.5778 13.9621 41.191 13.2793C42.3128 12.8047 43.3616 12.5589 44.5655 12.4892C44.8522 12.4723 45.3681 12.4762 45.6942 12.4981C46.9647 12.5819 48.2205 12.907 49.462 13.4734C49.531 13.5049 49.5891 13.5324 49.5914 13.5341C49.5937 13.5364 49.3679 13.5369 49.0898 13.5364C47.427 13.5302 45.8868 13.6196 44.3204 13.8142C39.3721 14.4278 35.1317 16.052 32.1932 18.4586C31.8278 18.7578 31.5611 18.9968 31.2253 19.3253C30.9055 19.6374 30.673 19.8849 30.4005 20.2027C30.2688 20.3562 29.9502 20.7533 29.9108 20.8134L29.9017 20.8281L29.9684 20.8781C30.0744 20.9569 30.3133 21.147 30.466 21.2735C30.8748 21.6109 31.2122 21.9107 32.0194 22.652C33.026 23.5766 33.449 23.9444 33.966 24.3454C35.0576 25.1918 35.981 25.6316 36.8645 25.725C37.0834 25.7481 37.4699 25.7514 37.6968 25.7318C38.659 25.648 39.7004 25.3083 41.0029 24.6547C41.5387 24.3859 42.05 24.1052 42.9124 23.6081C43.104 23.4978 43.4049 23.3241 43.5822 23.2217C44.37 22.7673 44.6955 22.5879 45.3464 22.2498C47.2383 21.2667 48.2581 20.6773 49.2214 20.0098C49.8958 19.5418 50.4208 19.1211 50.9577 18.6172C51.7107 17.9103 52.2038 17.1926 52.4631 16.426C52.5618 16.1353 52.6142 15.8963 52.6456 15.5881C52.6558 15.4924 52.6592 15.1977 52.6518 15.0903C52.621 14.6488 52.5133 14.2546 52.3149 13.8586C52.0687 13.3665 51.7056 12.9318 51.2205 12.5482C50.3005 11.8204 49.0328 11.3593 47.4031 11.1596C47.0685 11.1185 46.7424 11.0921 46.3041 11.0713C46.1462 11.064 45.4029 11.0606 45.2182 11.0662Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M56.2204 17.1633C56.1019 17.4344 56.0061 17.6402 55.8921 17.8697C55.0034 19.6576 53.7785 21.1576 52.1693 22.428C50.962 23.3813 49.558 24.2115 47.6553 25.0967C46.9171 25.4403 46.3363 25.694 44.694 26.3891C42.8608 27.1653 42.146 27.4847 41.2226 27.9397C40.444 28.3233 39.8181 28.6647 39.1962 29.0437C39.1209 29.0893 39.0582 29.1275 39.0577 29.1286C39.0565 29.1292 39.0742 29.1523 39.0976 29.1798C39.1523 29.2445 39.2492 29.3682 39.3934 29.5555C39.6089 29.8367 39.6938 29.9256 39.7371 29.9166C39.7542 29.9132 40.4554 29.6382 41.9123 29.0628C44.3093 28.1169 46.0524 27.4212 50.4313 25.6625C51.3752 25.2834 52.1499 24.9724 52.1528 24.9713C52.1579 24.969 52.3146 25.2345 52.3198 25.2531C52.3209 25.2587 51.0823 25.8756 43.3357 29.7276C41.9254 30.4289 40.7706 31.0037 40.7689 31.0049C40.7677 31.0065 41.2386 32.2045 41.8149 33.6673C42.3912 35.1302 43.151 37.0581 43.5027 37.9524C43.855 38.846 44.1451 39.58 44.1474 39.5828C44.1537 39.5901 44.226 39.5569 44.5344 39.4056C45.231 39.0643 45.8421 38.7156 46.521 38.2729C48.9555 36.6864 51.2413 34.4401 53.0705 31.8361C55.37 28.5623 56.7711 24.9696 56.9751 21.8251C56.9928 21.5535 56.9957 21.4635 56.9991 21.1362C57.0036 20.6654 56.99 20.3342 56.9489 19.9186C56.86 19.0209 56.6571 18.1745 56.3464 17.4046C56.2957 17.2797 56.2387 17.1459 56.2341 17.1408C56.2324 17.1397 56.2267 17.1498 56.2204 17.1633Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M11.7298 18.4006C11.2407 18.4152 10.7459 18.4524 10.2757 18.5097C7.57092 18.8416 5.20818 19.8961 3.15326 21.6879C2.88763 21.9196 2.55645 22.2301 2.34611 22.4449L2.2207 22.5732H2.27372C2.4071 22.5732 2.9851 22.59 3.32768 22.6041C5.55304 22.6958 6.91824 22.9697 8.33247 23.6086C8.50461 23.6862 8.88881 23.8763 9.06494 23.9713C9.69938 24.3127 10.3572 24.7216 11.194 25.2947C13.6741 26.9937 14.939 27.9639 16.1674 29.1107C16.3812 29.3103 17.3154 30.2377 18.0599 30.9897C18.8505 31.7883 19.4844 32.4373 20.853 33.8496C20.9504 33.9502 21.4441 34.4615 21.9503 34.9856C24.5176 37.6453 25.485 38.6357 26.7989 39.949C27.9446 41.0935 29.5275 42.6272 30.0736 43.1215C31.4548 44.3712 33.2298 45.4359 35.0693 46.1175C35.6216 46.3222 36.2207 46.5039 36.573 46.5742C37.1322 46.685 37.6595 46.6929 38.1502 46.5989C39.0651 46.4229 39.8073 45.8954 40.2764 45.086C40.5466 44.6198 40.7239 44.0461 40.786 43.4359C40.8083 43.2177 40.8094 43.189 40.8088 42.7048C40.8088 42.1429 40.7974 41.7504 40.7666 41.1947C40.6481 39.084 40.2901 37.395 39.6751 36.0402C39.5023 35.66 39.0577 34.8085 38.6958 34.1645C36.8535 30.8879 34.6007 28.0972 31.957 25.8183C29.7253 23.8943 27.2201 22.333 24.4413 21.1351C21.6516 19.9321 18.5894 19.0974 15.2668 18.634C14.2208 18.4878 13.5117 18.4242 12.6732 18.4001C12.4526 18.3939 11.9538 18.3939 11.7298 18.4006ZM14.5115 20.3741C15.1676 20.3961 15.7946 20.4517 16.4524 20.5462C19.2501 20.9484 22.2609 22.0192 25.2478 23.6744C29.2391 25.8863 32.9186 29.0134 35.4575 32.3507C37.1521 34.5785 38.2728 36.8084 38.7368 38.8776C39.0161 40.1227 39.0554 41.3061 38.8542 42.3904C38.828 42.5304 38.7904 42.7076 38.7858 42.7127C38.7841 42.7138 38.783 42.7053 38.783 42.693C38.783 42.6244 38.7596 42.2695 38.7425 42.0861C38.5914 40.4276 38.1052 38.7111 37.2952 36.9766C35.5247 33.1848 32.2899 29.4892 28.1749 26.5573C26.4962 25.3611 24.6755 24.3015 22.8213 23.4415C19.3584 21.8358 15.7775 20.8977 12.2742 20.6778C11.9629 20.6587 11.5052 20.6385 11.3707 20.6385C11.3291 20.6385 11.3023 20.6362 11.3051 20.6334C11.312 20.6272 11.5651 20.58 11.7703 20.5457C12.3266 20.454 12.9354 20.3949 13.5282 20.3747C13.7203 20.3679 14.3234 20.3679 14.5115 20.3741Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M3.10261 26.8059C2.05206 26.861 1.24035 27.2525 0.701685 27.9651C0.585401 28.1192 0.495338 28.2665 0.402994 28.4532C0.182966 28.9015 0.0581317 29.3992 0.01025 30.0224C-1.04069e-05 30.15 -0.00343053 30.5628 0.00397974 30.7141C0.0997432 32.6753 0.515288 34.5774 1.18392 36.1116C1.33783 36.4654 1.62455 37.0374 1.94433 37.629C3.24911 40.044 4.79215 42.2104 6.57062 44.1249C7.06312 44.6553 7.70382 45.2913 8.23565 45.779C10.4969 47.8503 13.0814 49.5623 15.9737 50.9059C18.3518 52.0105 20.93 52.8659 23.7282 53.4784C24.8164 53.7163 25.8504 53.8721 26.8468 53.9475C27.406 53.9896 27.837 54.0037 28.403 53.9992C28.782 53.9958 28.9 53.9924 29.2039 53.9756C30.992 53.876 32.6662 53.488 34.2343 52.8103C34.639 52.6353 35.1155 52.3997 35.5083 52.1798C36.1302 51.8328 36.8022 51.3902 37.3392 50.974L37.3859 50.9374L37.1055 50.934C36.5685 50.9273 36.1279 50.8947 35.6365 50.8255C33.3633 50.5066 31.2582 49.4954 29.1526 47.7108C28.6452 47.2806 28.1835 46.8492 27.5548 46.2171C26.9078 45.5669 26.4336 45.0686 25.2479 43.7931C23.6165 42.0383 23.1257 41.5322 22.0387 40.4838C19.4183 37.9569 18.7816 37.3444 17.869 36.4733C15.0166 33.7489 12.7867 31.7068 10.6753 29.8868C10.2718 29.5387 10.0894 29.3835 9.98561 29.2997C9.19898 28.663 8.21513 28.1175 7.04431 27.6675C6.41386 27.4251 5.66828 27.1968 4.97798 27.0337C4.41423 26.901 4.11212 26.8487 3.71253 26.8166C3.60993 26.8082 3.19838 26.8009 3.10261 26.8059ZM3.13681 28.4082C3.44291 28.5022 3.77695 28.5888 4.41081 28.7401C5.28351 28.9476 5.70704 29.0663 6.11517 29.2164C6.60596 29.3975 6.94854 29.5775 7.32077 29.8497C11.1638 32.6618 13.868 34.8552 16.1361 37.0014C16.982 37.8022 18.3233 39.1374 19.5055 40.3567C20.9779 41.8752 22.1595 43.1328 25.0142 46.2171C26.6827 48.0196 27.4961 48.8936 28.2719 49.717C28.4081 49.8621 28.5204 49.9824 28.5215 49.9847C28.5227 49.9881 28.2856 50.2198 27.9806 50.5128L27.9202 50.5707L27.5274 50.1557C26.7722 49.3582 26.2318 48.7834 24.7805 47.2379C22.0575 44.338 20.8622 43.0766 19.485 41.6503C17.7767 39.8809 16.0552 38.1532 14.7567 36.9029C12.8921 35.1083 11.2693 33.6854 9.68635 32.4576C9.3603 32.2045 9.05648 31.9886 8.66316 31.7299C8.01733 31.3052 7.47581 30.9863 6.09522 30.2192C4.91243 29.5617 4.37661 29.2513 3.78094 28.8778C3.54666 28.7305 3.03877 28.397 3.01711 28.3762C3.01027 28.3694 3.00229 28.3672 3.13681 28.4082Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </div>
+                        <div (click)="toogleNav(false)" class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+
+                        </div>
+                    </div>
+                    <div class="">
+                        <ul class="flex flex-col gap-3 pt-5">
+                            <li [routerLink]="['./']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-house-door" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                                </svg>
+                                خانه
+                            </li>
+                            <li [routerLink]="['./user']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-person" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                                </svg>
+                                کاربران
+                            </li>
+                            <li [routerLink]="['./products']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-box2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.95.4a1 1 0 0 1 .8-.4h8.5a1 1 0 0 1 .8.4l2.85 3.8a.5.5 0 0 1 .1.3V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.5a.5.5 0 0 1 .1-.3zM7.5 1H3.75L1.5 4h6zm1 0v3h6l-2.25-3zM15 5H1v10h14z" />
+                                </svg>
+                                محصول
+                            </li>
+                            <li [routerLink]="['./category']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                            </svg>
+                                دسته بندی ها
+                            </li>
+                            <li [routerLink]="['./menu']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                    </svg>
+                                منو ها
+                            </li>
+                            <li [routerLink]="['./comments']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                                  </svg> 
+                               کامنت ها
+                            </li>
+                            <li [routerLink]="['./contact-us']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                                    </svg>
+                              پیام ها
+                            </li>
+                            <li [routerLink]="['./oders']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                             فروش
+                            </li>
+                            <li [routerLink]="['./article']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                  </svg>
+                             مقالات
+                            </li>
+                            <li [routerLink]="['./info']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                             جزئیات سایت
+                            </li>
+                            <li [routerLink]="['../']" routerLinkActive="bg-blue-500 text-white" (click)="toogleNav(false)"
+                            [routerLinkActiveOptions]="{exact: true}"
+                                class="hover:bg-blue-500 hover:shadow hover:text-white  transition-colors py-2 pr-3  flex items-center rounded-lg gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                                  </svg> 
+                             صفحه اصلی سایت
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex">
+                    <a (click)="logout()" class="flex pr-3 py-2 mb-6 text-red-700 text-lg font-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                        </svg>
+                        خروج
+                    </a>
+                </div>
+            </div>
+            <!-- menu -->
+            <div class="fixed hidden sm:block">
+                <div class="h-full flex items-center justify-start">
+                    <div class="sidbar_nav h-screen relative">
+                        <input type="checkbox" hidden id="toggel_sidbar">
+                        <label for="toggel_sidbar" class="label_toggel_sidbar "></label>
+
+                        <ul
+                            class="flex flex-col justify-between bg-black/75 backdrop-blur-xl w-[5.5rem] rounded-xl pt-6 px-6 pb-0 h-full border border-slate-300 transition-all  ">
+                            <ul class="list-none">
+                                <li [routerLink]="['./']" routerLinkActive="bg-zinc-600"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                        class="bi bi-house-door" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                                    </svg>
+                                    <a
+                                        class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">خانه</a>
+                                </li>
+                                <li [routerLink]="['./user']" routerLinkActive="bg-zinc-600"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                        class="bi bi-person" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                                    </svg>
+                                    <a
+                                        class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">کاربر</a>
+                                </li>
+                                <li [routerLink]="['./products']" routerLinkActive="bg-zinc-600"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                        class="bi bi-box2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.95.4a1 1 0 0 1 .8-.4h8.5a1 1 0 0 1 .8.4l2.85 3.8a.5.5 0 0 1 .1.3V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.5a.5.5 0 0 1 .1-.3zM7.5 1H3.75L1.5 4h6zm1 0v3h6l-2.25-3zM15 5H1v10h14z" />
+                                    </svg>
+                                    <a
+                                        class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">محصول</a>
+                                </li>
+                                <li [routerLink]="['./category']" routerLinkActive="bg-zinc-600"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                                    </svg>
+
+                                    <a
+                                        class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">دسته
+                                        بندی ها</a>
+                                </li>
+                                <li [routerLink]="['./menu']" routerLinkActive="bg-zinc-600"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                    </svg>
+                                    <a class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">منو ها</a>
+                                </li>
+                                <li [routerLink]="['./comments']" routerLinkActive="bg-zinc-600"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                                      </svg>                                      
+                                    <a class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">کامنت ها</a>
+                                    @if (iaAcceptCount>0) {
+                                        <span class="-left-5 bg-red-700 rounded text-white py-px px-1 absolute">{{iaAcceptCount}}</span>
+                                    }
+                                </li>
+                                <li [routerLink]="['./contact-us']" routerLinkActive="bg-zinc-600"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                                    </svg>
+                                    <a class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">پیام ها </a>
+                                    @if (countactUs>0) {
+                                        <span class="-left-5 bg-red-700 rounded text-white py-px px-1 absolute">{{countactUs}}</span>
+                                    }
+                                </li>
+                                <li [routerLink]="['./oders']"
+                                routerLinkActive="bg-zinc-600"
+                                [routerLinkActiveOptions]="{exact: true}" class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                      </svg>
+                                      <a class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all" >فروش</a>
+                                      @if (newOrderCount) {
+                                          <span class="-left-5 bg-red-700 rounded text-white py-px px-1 absolute">{{newOrderCount}}</span>
+                                      }
+
+                                </li>
+                                <li [routerLink]="['./article']"
+                                routerLinkActive="bg-zinc-600"
+                                [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                      </svg>
+                                    <a class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">مقالات</a>
+                                        @if (articlePublish) {
+                                            <span class="-left-5 bg-red-700 rounded text-white py-px px-1 absolute">{{articlePublish}}</span>
+                                        }
+                                        
+                                </li>
+                                <li [routerLink]="['./info']"
+                                routerLinkActive="bg-zinc-600"
+                                [routerLinkActiveOptions]="{exact: true}"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-white hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                      </svg>
+                                      
+                                    <a class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">جزئیات سایت</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li [routerLink]="['../']" class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-black hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                                      </svg>                                      
+                                    <a class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">صفحه اصلی سایت</a>
+                                </li>
+                                <li (click)="logout()"
+                                    class="text-white flex items-center h-10 py-1 px-[5px] flex-nowrap mb-5 rounded transition-all relative hover:text-black hover:bg-zinc-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                                    </svg>
+                                    <a  class="no-underline text-white flex-[1] text-center mr-1 translate-x-[26px] opacity-0 hidden transition-all">خروج</a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="col-span-9 ">
+        <div class="mx-10 ">
+            <div class=" mt-10 rounded-lg shadow-normal p-7">
+                <h2 class="text-2xl font-semibold border-b-2 pb-9">{{title}}</h2>
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
+    </div>
+</section>

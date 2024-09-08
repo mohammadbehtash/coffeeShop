@@ -1,0 +1,85 @@
+<svg class="hidden">
+    <symbol id="user" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+      </symbol>
+      <symbol id="calendar-days" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+      </symbol>
+</svg>
+
+<section class="md:mb-28 mb-8 mt-3 md:mt-40">
+    <div class="container">
+        @defer(){
+<app-direction [item]="article.title"></app-direction>
+        <!-- article -->
+         <div class=" article_box dark:bg-zinc-600 bg-white rounded-lg shadow px-6 py-7">
+            <div class="article_title">
+                <h1 class="text-black dark:text-white text-3xl font-bold">{{article.title}}</h1>
+            
+            </div>
+            <div class="mt-6 text-gray-400 flex items-center gap-8">
+                <div class="flex gap-x-3">
+                    <span>{{article.creator.username}}</span>
+                    <svg class="w-5 h-5 text-gray-400">
+                        <use href="#user"></use>
+                    </svg>
+                </div>
+                <div class="flex gap-x-3">
+                    <span>{{article.createdAt|jalaliDate}}</span>
+                    <svg class="w-5 h-5 text-gray-400">
+                        <use href="#calendar-days"></use>
+                    </svg>
+                </div>
+                
+            </div>
+            <!-- متن -->
+            <div class="">
+                <div class="mt-5 px-10 flex items-center justify-center">
+                    <img class="rounded-lg " [src]="'http://localhost:4000/img/'+article.cover" alt="">
+                </div>
+
+              
+                <p class="leading-8 text-zinc-800 dark:text-gray-200" [innerHTML]="blogContent"></p>
+                
+            </div>
+         </div>
+        }
+        @placeholder {
+            <span class="loader"></span>
+            <!-- <p>PP</p> -->
+        }
+        
+         <!-- مطالب مرتبط -->
+          <div class="related_box mt-6 dark:bg-zinc-600 bg-white rounded-lg shadow px-6 py-7">
+            <div class="">
+                <h1 class="text-black dark:text-white text-3xl font-bold">مطالب مرتبط</h1>
+            </div>
+            <div class="grid grid-cols-2 mt-5 child:dark:bg-zinc-700 child:bg-slate-300 child:p-4 child:rounded-lg text-zinc-800 dark:text-white gap-6">
+                @for (item of articles; track $index) {
+                   <div [routerLink]="['/article', item.href]" class="flex items-center group">
+                    <div class="w-[40%] overflow-hidden rounded-lg">
+                        <img class="rounded-lg w-full object-cover transition-all group-hover:scale-105" [src]="'http://localhost:4000/img/'+item.cover" alt="">
+                    </div>
+                    <div class="w-[60%] h-full flex flex-col justify-around items-center">
+                        <h3 class="text-xl">{{item.title}}</h3>
+                        <div class="flex gap-3">
+                        <span class="tracking-widest text-gray-400">{{item.createdAt|jalaliDate}}</span>
+                        <svg class="w-5 h-5 text-gray-400">
+                            <use href="#calendar-days"></use>
+                        </svg>
+                        </div>
+                    </div>
+                </div> 
+                }
+                
+
+                
+
+             
+
+             
+                
+            </div>
+          </div>
+    </div>
+</section>

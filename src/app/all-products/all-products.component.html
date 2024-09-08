@@ -1,0 +1,29 @@
+<section class=" md:mt-40 mt-3 mb-14">
+    <div class="container">
+        <app-direction [item]=''></app-direction>
+        <div class="flex justify-between items-end  md:mb-12">
+            <div class="">
+                <h3 class="section-title ">{{title}}</h3>
+                <!-- <span class="section-subtitle">فراوری شده در خانه</span> -->
+            </div>
+            
+        </div>
+        @if (title=='تمامی محصولات') {
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5 mb-5 ">       
+        @for (item of pruduct; track $index) {
+
+            <app-product-box [item]="item"></app-product-box>       
+            
+        }
+    </div>   
+        }@else {
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5 mb-5  child:bg-white child:dark:bg-zinc-700 child:rounded-2xl child:shadow-normal">
+                @for (item of article; track $index) {
+                    <app-article-box [item]="item"></app-article-box>
+                   }
+            </div>
+        }
+       
+    </div>
+    
+</section>

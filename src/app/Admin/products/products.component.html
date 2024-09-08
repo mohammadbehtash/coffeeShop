@@ -1,0 +1,242 @@
+<div class="mt-4">
+    <div class="">
+
+        <form [formGroup]="ProductForm" class="">
+            <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                 <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">نام محصول</label>
+                    <input formControlName="title" placeholder="قهوه عربیکا" class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (ProductForm.get('title')?.invalid && (ProductForm.get('title')?.dirty || ProductForm.get('title')?.touched)) {
+                        @if (ProductForm.get('title')?.errors?.['required']) {
+                            <p class="text-red-400" >نام اجباری است</p>
+                        }
+                        @if (ProductForm.get('title')?.errors?.['minlength']) {
+                            <p class="text-red-400" >   طول نام باید حداقل {{ProductForm.get('title')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                       
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">قیمت</label>
+                    <input (keypress)="preventNegativeAndPlus($event)" (input)="checkPositiveNumber($event)" formControlName="price" placeholder="500000" class="p-3 outline-none rounded-xl shadow" type="number" name="" id="">
+                    @if (ProductForm.get('price')?.invalid && (ProductForm.get('price')?.dirty || ProductForm.get('price')?.touched)) {
+                        @if (ProductForm.get('price')?.errors?.['required']) {
+                            <p class="text-red-400" >قیمت محصول اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">عکس محصول</label>
+                    <input (change)="adressCover($event)" formControlName="cover" placeholder="" class="p-3 outline-none rounded-xl shadow" type="file" name="" id="">
+                    @if (ProductForm.get('cover')?.invalid && (ProductForm.get('cover')?.dirty || ProductForm.get('cover')?.touched)) {
+                        @if (ProductForm.get('cover')?.errors?.['required']) {
+                            <p class="text-red-400" >عکس محصول اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">مسیر</label>
+                    <input formControlName="href" placeholder="arabika" class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (ProductForm.get('href')?.invalid && (ProductForm.get('href')?.dirty || ProductForm.get('href')?.touched)) {
+                        @if (ProductForm.get('href')?.errors?.['required']) {
+                            <p class="text-red-400" >مسیر اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">ترکیبات</label>
+                    <input formControlName="combinations" placeholder="arabika" class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (ProductForm.get('combinations')?.invalid && (ProductForm.get('combinations')?.dirty || ProductForm.get('combinations')?.touched)) {
+                        @if (ProductForm.get('combinations')?.errors?.['required']) {
+                            <p class="text-red-400" >ترکیبات اجباری است</p>
+                        }
+                        @if (ProductForm.get('combinations')?.errors?.['minlength']) {
+                            <p class="text-red-400" >   طول ترکیبات باید حداقل {{ProductForm.get('combinations')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">دسته بندی</label>
+                    <select formControlName="categoryId" (change)="categoryId($event)" class="p-3 outline-none rounded-xl shadow" name="" id="">
+                        @for (item of category; track $index) {
+                            <option [value]="item._id">{{item.title}}</option>
+                        }
+                    </select>
+                    @if (ProductForm.get('categoryId')?.touched && ProductForm.get('categoryId')?.hasError('required')) {
+                        <p class="text-red-400" >انتخواب دسته بندی الظامی است</p>
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">تخفیف</label>
+                    <input (keypress)="preventNegativeAndPlus($event)" (input)="checkPositiveNumber($event)" formControlName="discount" placeholder="20 " class="p-3 outline-none rounded-xl shadow" type="number" name="" id="">
+                    @if (ProductForm.get('discount')?.invalid && (ProductForm.get('discount')?.dirty || ProductForm.get('discount')?.touched)) {
+                        @if (ProductForm.get('discount')?.errors?.['required']) {
+                            <p class="text-red-400" >تخفیف اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">تعداد موجود</label>
+                    <input (keypress)="preventNegativeAndPlus($event)" (input)="checkPositiveNumber($event)" formControlName="number" placeholder="100 " class="p-3 outline-none rounded-xl shadow" type="number" name="" id="">
+                    @if (ProductForm.get('number')?.invalid && (ProductForm.get('number')?.dirty || ProductForm.get('number')?.touched)) {
+                        @if (ProductForm.get('number')?.errors?.['required']) {
+                            <p class="text-red-400" >تعداد کالا اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">وزن</label>
+                    <input (keypress)="preventNegativeAndPlus($event)" (input)="checkPositiveNumber($event)" formControlName="weight" placeholder="158 " class="p-3 outline-none rounded-xl shadow" type="number" name="" id="">
+                    @if (ProductForm.get('weight')?.invalid && (ProductForm.get('weight')?.dirty || ProductForm.get('weight')?.touched)) {
+                        @if (ProductForm.get('weight')?.errors?.['required']) {
+                            <p class="text-red-400" >وزن اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">کد محصول</label>
+                    <input (keypress)="preventNegativeAndPlus($event)" (input)="checkPositiveNumber($event)" formControlName="code" placeholder="158 " class="p-3 outline-none rounded-xl shadow" type="number" name="" id="">
+                    @if (ProductForm.get('code')?.invalid && (ProductForm.get('code')?.dirty || ProductForm.get('code')?.touched)) {
+                        @if (ProductForm.get('code')?.errors?.['required']) {
+                            <p class="text-red-400" >کد محصول اجباری است</p>
+                        }
+                    }
+                </div>
+               
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">وزن بسته بندی</label>
+                    <input (keypress)="preventNegativeAndPlus($event)" (input)="checkPositiveNumber($event)" formControlName="packageWeight" placeholder="200" class="p-3 outline-none rounded-xl shadow" type="number" name="" id="">
+                    @if (ProductForm.get('packageWeight')?.invalid && (ProductForm.get('packageWeight')?.dirty || ProductForm.get('packageWeight')?.touched)) {
+                        @if (ProductForm.get('packageWeight')?.errors?.['required']) {
+                            <p class="text-red-400" >وزن بسته بندی اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">ابعاد بسته بندی</label>
+                    <input (keypress)="preventNegativeAndPlus($event)" (input)="checkPositiveNumber($event)" formControlName="dimensions" placeholder="111 " class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (ProductForm.get('dimensions')?.invalid && (ProductForm.get('dimensions')?.dirty || ProductForm.get('dimensions')?.touched)) {
+                        @if (ProductForm.get('dimensions')?.errors?.['required']) {
+                            <p class="text-red-400" >ابعاد بسته بندی اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">نوع بسته بندی</label>
+                    <input formControlName="type" placeholder="کیسه ای " class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (ProductForm.get('type')?.invalid && (ProductForm.get('type')?.dirty || ProductForm.get('type')?.touched)) {
+                        @if (ProductForm.get('type')?.errors?.['required']) {
+                            <p class="text-red-400" >نوع بسته بندی اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">شماره پروانه</label>
+                    <input formControlName="numberHygiene" placeholder="fory " class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (ProductForm.get('numberHygiene')?.invalid && (ProductForm.get('numberHygiene')?.dirty || ProductForm.get('numberHygiene')?.touched)) {
+                        @if (ProductForm.get('numberHygiene')?.errors?.['required']) {
+                            <p class="text-red-400" >شماره پروانه اجباری است</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">برند</label>
+                    <input formControlName="brand" placeholder="fory " class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (ProductForm.get('brand')?.invalid && (ProductForm.get('brand')?.dirty || ProductForm.get('brand')?.touched)) {
+                        @if (ProductForm.get('brand')?.errors?.['required']) {
+                            <p class="text-red-400" >برند محصول اجباری است</p>
+                        }
+                    }
+                </div>
+               
+            </div> 
+            </div>
+          <div class="">
+            <div class="flex flex-col gap-3">
+                <label class="text-xl" for="">توضیحات</label>
+                <textarea formControlName="description" placeholder="..." class="p-3 outline-none rounded-xl shadow" name="" id=""></textarea>
+                @if (ProductForm.get('description')?.invalid && (ProductForm.get('description')?.dirty || ProductForm.get('description')?.touched)) {
+                    @if (ProductForm.get('description')?.errors?.['required']) {
+                        <p class="text-red-400" >توضیحات اجباری است</p>
+                    }
+                    @if (ProductForm.get('description')?.errors?.['minlength']) {
+                        <p class="text-red-400" >   طول توضیحات باید حداقل {{ProductForm.get('description')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                    }
+                }
+            </div>
+          </div>
+           
+        </form>
+        <div class="btn flex items-center gap-5 mt-6">
+            <button  (click)="sendProduct()" [ngClass]="{'bg-green-600 hover:bg-green-500':isEdit==false,'bg-blue-600 hover:bg-blue-500':isEdit==true}" class=" text-white p-4 rounded-lg shadow  transition-colors">{{isEdit?'ویرایش محصول':'افزودن محصول'}}</button>
+        </div>
+    </div>
+    <div class="mt-6">
+        
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg table-fixed">
+        <thead>
+            
+            <tr class="bg-gray-200 text-right text-gray-700 uppercase text-sm leading-normal">
+               
+                <th class="py-3 px-6 ">تعداد </th>
+                <th class="py-3 px-6 ">نام </th>
+                <th class="py-3 px-6 ">دسته بندی</th>
+                <th class="py-3 px-6 ">وزن</th>
+                <th class="py-3 px-6 ">قیمت</th>
+                <th class="py-3 px-6 ">تخفیف</th>
+                <th class="py-3 px-6 ">ابعاد</th>
+                <th class="py-3 px-6 w-48">عکس</th>
+                <th class="py-3 px-6 ">تعداد</th>
+                <th class="py-3 px-6 ">نوع بسته بندی</th>
+                <th class="py-3 px-6 ">مسیر</th>
+                <th class="py-3 px-6 ">وزن بسته بندی</th>
+                <th class="py-3 px-6 ">شماره پروانه</th>
+                <th class="py-3 px-6 ">ترکیبات</th>
+                <th class="py-3 px-6 ">کد</th>
+                <th class="py-3 px-6 ">برند</th>
+                <th class="py-3 px-6 w-48">توضیحات</th>
+                <th class="py-3 px-6 ">عملیات</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            @for (item of product; track $index) {
+                
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-3 px-6">{{$index+1}}</td>
+                    <td class="py-3 px-6">{{item.title}}</td>
+                    <td class="py-3 px-6">{{item.categoryId.title}}</td>
+                    <td class="py-3 px-6">{{item.weight}}</td>
+                    <td class="py-3 px-6">{{item.price}}</td>                   
+                    <td class="py-3 px-6">{{item.discount}}</td>                   
+                    <td class="py-3 px-6">{{item.dimensions}}</td>                   
+                    <td class=""><div class="py-3 px-6  w-48 overflow-hidden text-ellipsis whitespace-nowrap">{{item.cover}}</div></td>                   
+                    <td class="py-3 px-6">{{item.number}}</td>                   
+                    <td class="py-3 px-6">{{item.type}}</td>                   
+                    <td class="py-3 px-6">{{item.href}}</td>                   
+                    <td class="py-3 px-6">{{item.packageWeight}}</td>                   
+                    <td class="py-3 px-6">{{item.numberHygiene}}</td>                   
+                    <td class="py-3 px-6">{{item.combinations}}</td>                   
+                    <td class="py-3 px-6">{{item.code}}</td>                   
+                    <td class="py-3 px-6">{{item.brand}}</td>                   
+                    <td class=""><div class="py-3 px-6 w-48 overflow-hidden text-ellipsis whitespace-nowrap">{{item.description}}</div></td>                   
+                    <td class="py-3 px-6 ">
+                        <div class="flex gap-5">
+                            <button (click)="selectedItem(item._id,item.title,item.weight,item.price,item.discount,item.dimensions,item.number,item.type,item.href,item.packageWeight,item.numberHygiene,item.combinations,item.code,item.brand,item.description)" class="bg-blue-600 text-white p-3 rounded-lg shadow hover:bg-blue-500 transition-colors">انتخواب</button>
+                                <button (click)="removeProduct(item._id,item.title)" class="text-red-600 p-3 rounded-lg hover:shadow hover:text-white hover:bg-red-500 transition-colors">خذف</button>
+                        </div>
+                    </td>
+                </tr>
+            } 
+            
+        </tbody>
+    </table>
+</div>
+    </div>
+</div>
+<app-confirm-modal-delete></app-confirm-modal-delete>

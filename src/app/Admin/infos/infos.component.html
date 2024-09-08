@@ -1,0 +1,91 @@
+<div class="mt-4">
+    <div class="">
+
+        <form [formGroup]="infoForm" class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">ایمیل </label>
+                    <input formControlName="email" placeholder="فوری" class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if(infoForm.get('email')?.invalid && (infoForm.get('email')?.dirty || infoForm.get('email')?.touched)){
+                        @if (infoForm.get('email')?.errors?.['required']) {
+                            <p class="text-red-400" >ایمیل است</p>
+                        }
+                        @if (infoForm.get('email')?.errors?.['minlength']) {
+                            <p class="text-red-400" >   طول ایمیل باید حداقل {{infoForm.get('email')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">موبایل</label>
+                    <input formControlName="phone" placeholder="fory " class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if(infoForm.get('phone')?.invalid && (infoForm.get('phone')?.dirty || infoForm.get('phone')?.touched)){
+                        @if (infoForm.get('phone')?.errors?.['required']) {
+                            <p class="text-red-400" >موبایل اجباری است</p>
+                        }
+                        @if (infoForm.get('phone')?.errors?.['minlength']) {
+                            <p class="text-red-400" >مسیر باید حداقل {{infoForm.get('phone')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">لوگو سایت</label>
+                    <input (change)="adressCover($event)" formControlName="logo" placeholder="fory " class="p-3 outline-none rounded-xl shadow" type="file" name="" id="">
+                    @if(infoForm.get('logo')?.invalid && (infoForm.get('logo')?.dirty || infoForm.get('logo')?.touched)){
+                        @if (infoForm.get('phone')?.errors?.['required']) {
+                            <p class="text-red-400" >لوگو اجباری است</p>
+                        }
+                       
+                    }
+                   
+                </div>
+               
+            </div>
+           
+        </form>
+        <div class="btn flex items-center gap-5 mt-6">
+            <button (click)="CreateInfo()" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-lg shadow  transition-colors">افزودن</button>
+        </div>
+    </div>
+    <div class="mt-6">
+        
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+        <thead>
+            
+            <tr class="bg-gray-200 text-right text-gray-700 uppercase text-sm leading-normal">
+               
+                
+                <th class="py-3 px-6 ">ایمیل </th>
+                <th class="py-3 px-6 ">موبایل</th>
+                <th class="py-3 px-6 ">لوگو</th>
+                
+                <th class="py-3 px-6 ">عملیات</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            @if (info) {
+                
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    
+                    <td class="py-3 px-6">{{info.email}}</td>
+                    <td class="py-3 px-6">{{info.phone}}</td>
+                    <td class="py-3 px-6">
+                        <img class="w-40" [src]="'http://localhost:4000/img/'+info.logo" alt="">
+                    </td>
+                                   
+                    <td class="py-3 px-6 ">
+                        <div class="flex gap-5">
+                            <button (click)="removeInfo(info.id)" class="text-red-600 p-3 rounded-lg hover:shadow hover:text-white hover:bg-red-500 transition-colors">خذف</button>
+                        </div>
+                    </td>
+                </tr>
+            } 
+            
+        </tbody>
+    </table>
+    <app-confirm-modal-delete></app-confirm-modal-delete>
+</div>
+    </div>
+</div>

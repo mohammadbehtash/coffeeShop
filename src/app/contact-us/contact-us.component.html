@@ -1,0 +1,130 @@
+<!-- <section class="md:mb-28 mb-8 mt-40 flex items-center justify-center">
+    
+    <form [formGroup]="contentForm" class="w-[30%] child:m-5 child:text-gray-400 rounded-lg dark:bg-zinc-600 bg-white">
+    
+        <div class="">
+            <label for="">نام کاربری</label>
+            <input formControlName="name" class="inp" type="text">
+        </div>
+        <div class="">
+            <label for="">ایمیل</label>
+            <input formControlName="email" class="inp" type="text">
+             @if(contentForm.get('email')?.invalid &&  contentForm.get('email')?.touched){
+            <p class="text-red-400">این فیلد اجباری است</p>
+         
+          @if(contentForm.get('email')?.parent){
+            <p class="text-red-400">لطفاً یک آدرس ایمیل معتبر وارد کنید.</p>
+          }
+         }
+        </div>
+        <div class="">
+            <label for="">شماره تلفن</label>
+            <input formControlName="phone" class="inp" type="text">
+            @if(contentForm.get('phone')?.invalid &&  contentForm.get('phone')?.touched){
+                <p class="text-red-400">این فیلد اجباری است</p>
+             
+              @if(contentForm.get('phone')?.parent){
+                <p class="text-red-400">لطفاً شماره تلفن را ۱1 رقمی وارد کنید</p>
+              }
+             }
+        </div>
+        <div class="">
+            <label for="">پیام خود را بنویسید</label>
+            <textarea formControlName="body" name="" class="inp" id=""></textarea>
+        </div>
+        <div class="flex items-center justify-center">
+            <a (click)="sendContent()" class="flex items-center justify-center gap-3 dark:bg-emerald-500 dark:hover:bg-emerald-600 bg-teal-600 hover:bg-teal-700 text-white py-2 px-5 rounded-lg tracking-tightest transition-colors ">ارسال
+                <svg class="w-5 h-5 text-white" id="envelope" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                  </svg>
+            </a>
+        </div>
+    </form>
+</section> -->
+<div class="container bg-white dark:bg-zinc-700 w-11/12 max-w-[1100px] sm:w-full mt-0 md:mt-50 md:mb-40 rounded-lg shadow p-9">
+    <div class="content h-full flex sm:flex-row  flex-col-reverse gap-6 items-center justify-center">
+        <div
+            class="left_content w-full gap-6 sm:w-1/4 h-full flex flex-row flex-wrap sm:flex-col items-center justify-center relative pt-5">
+            <div class="info_contact text-center mb-8 ">
+                <div class="flex items-center flex-col ">
+                    <svg  fill="#fb923c" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        class="bi bi-geo-alt-fill mb-3" viewBox="0 0 16 16">
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                    </svg>
+                    <h5 class="title text-lg font-medium dark:text-white">آدرس</h5>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text text-zinc-400 text-sm">آذربایجان شرقی- تبریز</span>
+                    <span class="text text-zinc-400 text-sm">خیابان حافظ </span>
+                </div>
+            </div>
+            <div class="info_contact text-center mb-8">
+                <div class="flex items-center flex-col ">
+                    <svg  fill="#fb923c" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        class="bi bi-telephone-fill mb-3" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                    </svg>
+                    <h5 class="title text-lg font-medium dark:text-white">تلفن</h5>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text text-zinc-400 text-sm">+98 9211149219</span>
+                    <span class="text text-zinc-400 text-sm">+98 9910307968</span>
+                </div>
+            </div>
+            <div class="info_contact text-center mb-8">
+                <div class="flex items-center flex-col ">
+                    <svg  fill="#fb923c" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        class="bi bi-envelope-fill mb-3" viewBox="0 0 16 16">
+                        <path
+                            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                    </svg>
+                    <h5 class="title text-lg font-medium dark:text-white">ایمیل</h5>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text block text-zinc-400 text-sm">mmdys&#64;999gmail.com</span>
+                    <span class="text text-zinc-400 text-sm">---</span>
+                </div>
+            </div>
+        </div>
+        <div class="right_content w-full sm:w-3/4 h-full p-0 mb-0 sm:mb-5 sm:pl-[75px]">
+            <h4 class="text-2xl font-semibold text-orange-400">تماس با ما</h4>
+            <p class="dark:text-white my-3">پاسخ پیام شما از  طریق ایمیل به شما ارسال میشود</p>
+            <form action="" [formGroup]="contentForm">
+                <div class="input-box w-full  my-3 mx-0">
+                    <input formControlName="name" class="border-none h-14 bg-zinc-200 rounded-md text-base w-full py-0 px-4 resize-none"
+                        type="text" placeholder="نام">
+                </div>
+                <div class="input-box w-full  my-3 mx-0">
+                    <input formControlName="email" class="border-none h-14 bg-zinc-200 rounded-md text-base w-full  py-0 px-4 resize-none"
+                        type="email" placeholder="ایمیل">
+                        @if(contentForm.get('email')?.invalid &&  contentForm.get('email')?.touched){
+                            <p class="text-red-400">این فیلد اجباری است</p>
+                         
+                          @if(contentForm.get('email')?.parent){
+                            <p class="text-red-400">لطفاً یک آدرس ایمیل معتبر وارد کنید.</p>
+                          }
+                         }
+                </div>
+                <div class="input-box w-full  my-3 mx-0">
+                    <input formControlName="phone" class="border-none h-14 bg-zinc-200 rounded-md text-base w-full  py-0 px-4 resize-none"
+                        type="text" placeholder="تلفن">
+                        @if(contentForm.get('phone')?.invalid &&  contentForm.get('phone')?.touched){
+                            <p class="text-red-400">این فیلد اجباری است</p>
+                         
+                          @if(contentForm.get('phone')?.parent){
+                            <p class="text-red-400">لطفاً شماره تلفن را ۱1 رقمی وارد کنید</p>
+                          }
+                         }
+                </div>
+                <div class="input-box w-full h-14 my-3 mx-0 txt-area min-h-[110px]">
+                    <textarea formControlName="body" class="border-none bg-zinc-200 rounded-md text-base w-full h-full py-0 px-4 resize-none"
+                        cols="30" rows="10" placeholder="پیام خود را بنویسید"></textarea>
+                </div>
+                <button (click)="sendContent()"
+                    class="bg-orange-400 border-none rounded-md py-3 px-4 text-lg text-white mt-3 cursor-pointer transition-all hover:bg-orange-200"
+                    type="submit">ارسال</button>
+            </form>
+        </div>
+    </div>
+</div>

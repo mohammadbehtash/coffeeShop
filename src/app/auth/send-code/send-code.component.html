@@ -1,0 +1,13 @@
+<form (ngSubmit)="unSubmit()" [formGroup]="emailForm" action="" class="flex items-center flex-col justify-center">
+    <div class="text-white text-center">
+        <h3 class="text-2xl mb-2">فورم ثبت نام</h3>
+        <h6 class="mb-2">لطفا ایمیل خود را وارد کنید</h6>
+    </div>
+    <div class="text-white mb-4">
+        <input formControlName="emailInput" class="bg-gray-500 p-3 outline-0 rounded-lg focus:border" type="text" placeholder="ایمیل">
+    </div>  
+     
+    <div class="text-white mb-3 w-full">
+        <button class="bg-orange-400 p-3 w-full rounded-lg">ثبت نام</button>
+    </div>  
+</form>

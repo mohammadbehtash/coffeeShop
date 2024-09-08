@@ -1,0 +1,25 @@
+<div class="auth-background h-screen md:block flex items-center justify-center">
+    <section class=" md:h-screen w-96 rounded-xl md:rounded-none  bg-slate-700 ">
+        <div class="md:pt-[14rem] py-20 flex flex-col items-center justify-center">
+
+            <div class="tab-container">
+                <ul class="flex flex-wrap mb-4 gap-4">
+                    <li class=" flex-auto text-center " (click)="active=true">
+                        <button [ngClass]="{'bg-indigo-600':active}"
+                            class="w-25  rounded py-3 px-4 transition hover:text-white text-white border-2">ورود</button>
+                    </li>
+                    <li class="flex-auto text-center " (click)="active=false">
+                        <button [ngClass]="{'bg-indigo-600':!active}"
+                            class="w-25  rounded py-3 px-4 transition hover:text-white text-white border-2">ثبت
+                            نام</button>
+                    </li>
+                </ul>
+            </div>
+            @if (active) {
+            <app-login></app-login>
+            }@else {
+            <router-outlet></router-outlet>
+            }
+        </div>
+    </section>
+</div>

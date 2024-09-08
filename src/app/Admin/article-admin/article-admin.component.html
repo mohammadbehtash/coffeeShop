@@ -1,0 +1,165 @@
+<div class="mt-4">
+    <div class="">
+
+        <form [formGroup]="articleForm" class="">
+            <div class="grid gap-4 grid-cols-1 md:grid-cols-2 ">
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-3">
+                        <label class="text-xl" for="">نام</label>
+                        <input formControlName="title" placeholder="آموزشدم کردن قهوه"
+                            class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                        @if (articleForm.get('title')?.invalid && (articleForm.get('title')?.dirty ||
+                        articleForm.get('title')?.touched)) {
+                        @if (articleForm.get('title')?.errors?.['required']) {
+                        <p class="text-red-400">نام اجباری است</p>
+                        }
+                        @if (articleForm.get('title')?.errors?.['minlength']) {
+                        <p class="text-red-400"> طول نام باید حداقل
+                            {{articleForm.get('title')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+
+                        }
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <label class="text-xl" for="">عکس مقاله</label>
+                        <input (change)="adressCover($event)" formControlName="cover" placeholder=""
+                            class="p-3 outline-none rounded-xl shadow" type="file" name="" id="">
+                        @if (articleForm.get('cover')?.invalid && (articleForm.get('cover')?.dirty ||
+                        articleForm.get('cover')?.touched)) {
+                        @if (articleForm.get('cover')?.errors?.['required']) {
+                        <p class="text-red-400">عکس مقاله اجباری است</p>
+                        }
+                        }
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <label class="text-xl" for="">دسته بندی</label>
+                        <select formControlName="categoryID" (change)="categoryId($event)"
+                            class="p-3 outline-none rounded-xl shadow" name="" id="">
+                            @for (item of category; track $index) {
+                            <option [value]="item._id">{{item.title}}</option>
+                            }
+                        </select>
+                        @if (articleForm.get('categoryID')?.touched &&
+                        articleForm.get('categoryID')?.hasError('required')) {
+                        <p class="text-red-400">انتخواب دسته بندی الظامی است</p>
+                        }
+                    </div>
+
+                </div>
+                <div class="flex flex-col gap-6">
+
+                    <div class="flex flex-col gap-3">
+                        <label class="text-xl" for="">مسیر</label>
+                        <input formControlName="href" placeholder="arabika" class="p-3 outline-none rounded-xl shadow"
+                            type="text" name="" id="">
+                        @if (articleForm.get('href')?.invalid && (articleForm.get('href')?.dirty ||
+                        articleForm.get('href')?.touched)) {
+                        @if (articleForm.get('href')?.errors?.['required']) {
+                        <p class="text-red-400">مسیر اجباری است</p>
+                        }
+                        }
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <label class="text-xl" for="">توضیحات</label>
+                        <textarea formControlName="description" placeholder="..."
+                            class="p-3 outline-none rounded-xl shadow" name="" id=""></textarea>
+                        @if (articleForm.get('description')?.invalid && (articleForm.get('description')?.dirty ||
+                        articleForm.get('description')?.touched)) {
+                        @if (articleForm.get('description')?.errors?.['required']) {
+                        <p class="text-red-400">توضیحات اجباری است</p>
+                        }
+                        @if (articleForm.get('description')?.errors?.['minlength']) {
+                        <p class="text-red-400"> طول توضیحات باید حداقل
+                            {{articleForm.get('description')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="mt-7">
+                <label class="text-xl" for="">متن مقاله</label>
+                <editor formControlName="body" (blur)="onBlur()" [apiKey]="apiKey"></editor>
+                @if (articleForm.get('body')?.touched &&
+                articleForm.get('body')?.hasError('required')) {
+                <p class="text-red-400">انتخواب دسته بندی الظامی است</p>
+                }
+            </div>
+
+        </form>
+        <div class="btn flex items-center gap-5 mt-6">
+            <button (click)="sendArticle()"
+                [ngClass]="{'bg-green-600 hover:bg-green-500':isEdit==false,'bg-blue-600 hover:bg-blue-500':isEdit==true}"
+                class=" text-white p-4 rounded-lg shadow  transition-colors">{{isEdit?'ویرایش مقاله':'افزودن مقاله'}}</button>
+        </div>
+    </div>
+    <div class="mt-6">
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg table-fixed">
+                <thead>
+
+                    <tr class="bg-gray-200 text-right text-gray-700 uppercase text-sm leading-normal">
+
+                        <th class="py-3 px-6 ">تعداد </th>
+                        <th class="py-3 px-6 ">نام مقاله </th>
+                        <th class="py-3 px-6 ">مسیر</th>
+                        <th class="py-3 px-6 w-48">توضیحات</th>
+                        <th class="py-3 px-6 w-48">متن</th>
+                        <th class="py-3 px-6 ">دسته بندی</th>
+                        <th class="py-3 px-6 ">نام نویسنده</th>
+                        <th class="py-3 px-6 w-48">عکس</th>
+                        <th class="py-3 px-6 ">تاریخ</th>
+                        <th class="py-3 px-6 ">نمایش</th>
+                        <th class="py-3 px-6 ">عملیات</th>
+                       
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                    @for (item of article; track $index) {
+
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6">{{$index+1}}</td>
+                        <td class="py-3 px-6">{{item.title}}</td>
+                        <td class="py-3 px-6">{{item.href}}</td>
+                        <td class="">
+                            <div class="py-3 px-6 w-48 overflow-hidden text-ellipsis whitespace-nowrap">{{item.description}}</div>
+                        </td>
+                        <td class="">
+                            <div class="py-3 px-6 w-48 overflow-hidden text-ellipsis whitespace-nowrap">{{item.body}}</div>
+                        </td>
+                        <td class="py-3 px-6">{{item.categoryID.title}}</td>
+                        <td class="py-3 px-6">{{item.creator.username}}</td>
+                        <td class="">
+                            <div class="py-3 px-6  w-48 overflow-hidden text-ellipsis whitespace-nowrap">{{item.cover}}
+                            </div>
+                        </td>
+                        <td class="py-3 px-6">{{item.createdAt}}</td>
+                        <td class="py-3 px-6">
+                            <div class="flex gap-3">
+                                <button (click)="publizOne(item._id)"
+                                [disabled]="item.publish==1"
+                                    [ngClass]="{'bg-zinc-500 ':item.publish==1,'bg-yellow-500 hover:bg-yellow-700':item.publish==0}"
+                                    class=" text-white  p-3 rounded-lg transition-colors shadow">بله</button>
+                                <button  (click)="publizZero(item._id)"
+                                [disabled]="item.publish==0"
+                                    [ngClass]="{'bg-zinc-500 ':item.publish==0,'bg-yellow-500 hover:bg-yellow-700':item.publish==1}"
+                                    class="bg-yellow-500 text-white hover:bg-yellow-700 p-3 rounded-lg transition-colors shadow">خیر</button>
+                            </div>                        
+                        </td>
+                        <td class="py-3 px-6 ">
+                            <div class="flex gap-5">
+                                <button (click)="selectid(item._id,item.body,item.description,item.href,item.title)" class="bg-blue-600 text-white p-3 rounded-lg shadow hover:bg-blue-500 transition-colors">انتخواب</button>
+                                <button (click)="deleteArticle(item._id)" class="text-red-600 p-3 rounded-lg hover:shadow hover:text-white hover:bg-red-500 transition-colors">خذف</button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-confirm-modal-delete></app-confirm-modal-delete>

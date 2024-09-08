@@ -1,0 +1,46 @@
+<div class="flex flex-col gap-3">
+    <label class="text-xl" for="">{{lable}}</label>
+    <input  [formControl]="control"
+    [placeholder]="placeholder" 
+    [type]="type" class="p-3 outline-none rounded-xl shadow">
+</div>
+@if(control.invalid &&(control.dirty || control.touched)){ 
+    @if
+    (control.hasError('required')) {
+    <p class="text-red-400">این فیلد اجباری است</p>
+    }
+} 
+    @if(control.hasError('minlength')){
+    <p class="text-red-400">
+      طول این فیلد حداقل باید
+      {{control.errors?.['minlength']['requiredLength']}}
+      کاراکتر باشد .
+    </p>
+    } 
+    
+    @if(control.hasError('min')){
+    <p class="text-red-400">
+      عدد نباید کمتر از
+      {{control.errors?.['min']?.min}}
+      باشد .
+    </p>
+    } 
+    
+    @if (control.hasError('email')) {
+    <p class="text-red-400">لطفاً یک آدرس ایمیل معتبر وارد کنید.</p>
+    }
+    
+    @if(control.hasError('pattern')  && control.errors?.['patternName'] === 'passworD'){
+    <p class="text-red-400">
+      رمز عبور باید شامل حداقل ۸ کاراکتر، یک حرف بزرگ، یک حرف کوچک، یک عدد و یک
+      کاراکتر ویژه #?!&#64;$ %^&*- باشد.
+    </p>
+    } 
+    
+    @if(control.hasError('pattern')&& control.errors?.['patternName'] === 'phonE'){
+    <p class="text-red-400">لطفاً شماره تلفن را 11 رقمی وارد کنید</p>
+    }
+
+    @if(control.hasError('pattern')&& control.errors?.['patternName'] === 'emaiL'){
+    <p class="text-red-400">ایمیل نامعتبر است</p>
+    }

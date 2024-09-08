@@ -1,0 +1,87 @@
+<div class="mt-4">
+    <div class="">
+
+        <form [formGroup]="CommentForm" class="flex flex-col">
+            <div class="flex flex-col gap-3 mb-4">
+                <p>کامنت کاربر:</p>
+                <p>{{body}}</p>
+            </div>
+            <div class="flex flex-col gap-3">
+                <label class="text-xl" for="">جواب</label>
+                <textarea formControlName="body" placeholder="..." class="p-3 outline-none rounded-xl shadow" name=""id=""></textarea>
+            </div>
+
+
+        </form>
+        <div class="btn flex items-center gap-5 mt-6">
+            <button (click)="sendAnswerComment()" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-lg shadow  transition-colors">ارسال جواب</button>
+        </div>
+    </div>
+    <div class="mt-6">
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+                <thead>
+
+                    <tr class="bg-gray-200 text-right text-gray-700 uppercase text-sm leading-normal">
+
+                        <th class="py-3 px-6 ">تعداد </th>
+                        <th class="py-3 px-6 ">پیام</th>
+                        <th class="py-3 px-6 ">تاریخ ایجاد</th>
+                        <th class="py-3 px-6 ">نام</th>
+                        <th class="py-3 px-6 ">ایمیل</th>
+                        <th class="py-3 px-6 ">تلفن</th>
+                        <th class="py-3 px-6 ">تایید شده</th>
+                        <th class="py-3 px-6 ">جواب داده شده</th>
+                        <th class="py-3 px-6 ">محصول</th>
+                        <th class="py-3 px-6 ">امتیاز</th>
+                        <th class="py-3 px-6 ">جواب مدیر</th>
+                        <th class="py-3 px-6 ">تاریخ جواب</th>
+                        <th class="py-3 px-6 ">نام مدیر</th>
+                        <th class="py-3 px-6 ">حذف</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                    @if(comment && comment.length==0){
+                        <p>کامنتی ثبت نشده</p>
+                    }
+                    @for (item of comment; track $index) {
+
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6">{{$index+1}}</td>
+                        <td class="py-3 px-6">{{item.body}}</td>
+                        <td class="py-3 px-6">{{item.createdAt|jalaliDateSimple}}</td>
+                        <td class="py-3 px-6">{{item.create.username}}</td>
+                        <td class="py-3 px-6">{{item.create.email}}</td>
+                        <td class="py-3 px-6">{{item.create.phone}}</td>
+                        <td class="py-3 px-6 flex items-center justify-around">{{item.iaAccept==1?'بله':'خیر'}}
+                            <div class="flex gap-3">
+                                <button (click)="accept(item._id)" [disabled]="item.iaAccept==1" [ngClass]="{'bg-green-500 hover:bg-green-700':item.iaAccept==0,'bg-zinc-500':item.iaAccept==1}" class=" text-white  p-3 rounded-lg transition-colors shadow">تایید</button>
+                                <button (click)="reject(item._id)" [disabled]="item.iaAccept==0" [ngClass]="{'bg-red-500 hover:bg-red-700':item.iaAccept==1,'bg-zinc-500':item.iaAccept==0}" class="  text-white p-3 rounded-lg transition-colors shadow">رد</button>
+                            </div>
+                        </td>
+                        <td class="py-3 px-6 ">{{item.isAnswer==1?'بله ':'خیر'}}
+                            <div class="flex gap-3">
+                                <button (click)="selectedByAnswer(item.body,item._id)" [disabled]="item.isAnswer==1" [ngClass]="{'bg-zinc-500':item.isAnswer==1,'bg-blue-600 hover:bg-blue-500':item.isAnswer==0}" class=" text-white  p-3 rounded-lg transition-colors shadow">جواب</button>
+                            </div>
+                        </td>
+                        <td class="py-3 px-6">{{item.product.title}}</td>
+                        <td class="py-3 px-6">{{item.score}}</td>
+                        <td class="py-3 px-6">{{item.answerComment &&
+                            item.answerComment.body?item.answerComment.body:'بدون جواب'}}</td>
+                        <td class="py-3 px-6">{{item.answerComment && item.answerComment.createdAt ?
+                            item.answerComment.createdAt : 'بدون جواب'}}</td>
+                        <td class="py-3 px-6">{{item.answerComment && item.answerComment.create.username?item.answerComment.create.username : 'بدون جواب'}}</td>
+                        <td class="py-3 px-6">
+                            <button (click)="DeleteComment(item._id)" class="text-red-600 p-3 rounded-lg hover:shadow hover:text-white hover:bg-red-500 transition-colors">خذف</button>
+                        </td>
+                        
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+            <app-confirm-modal-delete></app-confirm-modal-delete>
+        </div>
+    </div>
+</div>

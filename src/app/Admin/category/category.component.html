@@ -1,0 +1,88 @@
+<div class="mt-4">
+    <div class="">
+
+        <form [formGroup]="CategoryForm" class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">نام دسته بندی</label>
+                    <input formControlName="title" placeholder="فوری" class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if(CategoryForm.get('title')?.invalid && (CategoryForm.get('title')?.dirty || CategoryForm.get('title')?.touched)){
+                        @if (CategoryForm.get('title')?.errors?.['required']) {
+                            <p class="text-red-400" >نام دسته بندی اجباری است</p>
+                        }
+                        @if (CategoryForm.get('title')?.errors?.['minlength']) {
+                            <p class="text-red-400" >   طول دسته بندی باید حداقل {{CategoryForm.get('title')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">مسیر</label>
+                    <input formControlName="href" placeholder="fory " class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if(CategoryForm.get('href')?.invalid && (CategoryForm.get('href')?.dirty || CategoryForm.get('href')?.touched)){
+                        @if (CategoryForm.get('href')?.errors?.['required']) {
+                            <p class="text-red-400" >مسیر اجباری است</p>
+                        }
+                        @if (CategoryForm.get('href')?.errors?.['minlength']) {
+                            <p class="text-red-400" >مسیر باید حداقل {{CategoryForm.get('href')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">عکس دسته بندی</label>
+                    <input (change)="adressCover($event)" formControlName="cover" placeholder="" class="p-3 outline-none rounded-xl shadow" type="file" name="" id="">
+                    @if(CategoryForm.get('title')?.invalid && (CategoryForm.get('title')?.dirty || CategoryForm.get('title')?.touched)){
+                        @if (CategoryForm.get('title')?.errors?.['required']) {
+                            <p class="text-red-400" >عکس اجباری است</p>
+                        }
+                    }
+                </div>
+               
+            </div>
+           
+        </form>
+        <div class="btn flex items-center gap-5 mt-6">
+            <button (click)="PostCategory()" [ngClass]="{'bg-green-600 hover:bg-green-500':isEdit==false,'bg-blue-600 hover:bg-blue-500':isEdit==true}" class=" text-white p-4 rounded-lg shadow  transition-colors">{{isEdit?'ویرایش دسته بندی':'افزودن دسته بندی'}}</button>
+        </div>
+    </div>
+    <div class="mt-6">
+        
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+        <thead>
+            
+            <tr class="bg-gray-200 text-right text-gray-700 uppercase text-sm leading-normal">
+               
+                <th class="py-3 px-6 ">تعداد </th>
+                <th class="py-3 px-6 ">نام </th>
+                <th class="py-3 px-6 ">مسیر</th>
+                <th class="py-3 px-6 ">آدرس عکس</th>
+                <th class="py-3 px-6 ">تاریخ ثبت</th>
+                <th class="py-3 px-6 ">عملیات</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            @for (item of category; track $index) {
+                
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-3 px-6">{{$index+1}}</td>
+                    <td class="py-3 px-6">{{item.title}}</td>
+                    <td class="py-3 px-6">{{item.href}}</td>
+                    <td class="py-3 px-6">{{item.cover}}</td>
+                    <td class="py-3 px-6">{{item.createdAt!|jalaliDateSimple}}</td>                   
+                    <td class="py-3 px-6 ">
+                        <div class="flex gap-5">
+                            <button (click)="SelectItem(item._id!,item.href,item.title)" class="bg-blue-600 text-white p-3 rounded-lg shadow hover:bg-blue-500 transition-colors">انتخواب</button>
+                                <button (click)="removeUser(item._id!,item.title)" class="text-red-600 p-3 rounded-lg hover:shadow hover:text-white hover:bg-red-500 transition-colors">خذف</button>
+                        </div>
+                    </td>
+                </tr>
+            } 
+            
+        </tbody>
+    </table>
+    <app-confirm-modal-delete></app-confirm-modal-delete>
+</div>
+    </div>
+</div>

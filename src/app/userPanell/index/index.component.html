@@ -1,0 +1,120 @@
+
+        <div  class="md:hidden flex items-center justify-between mt-5 px-5">
+            <div class="flex gap-x-2 items-center">
+                <div (click)="toggelNav(true)" class="cursor-pointer">
+                    <svg  class="w-5 h-5 text-black dark:text-white">
+                        <use href="#bars-3"></use>
+                    </svg>
+                </div>
+                <div class=""><h1 class="dark:text-white text-2xl">{{username}} خوش آمدید </h1></div>
+            </div>
+            <div class="flex gap-4 items-center">
+                <div [routerLink]="['/']" class="">
+                   <div  class="p-3 rounded-full dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 cursor-pointer toggle-theme">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.49 12 3.74 8.248m0 0 3.75-3.75m-3.75 3.75h16.5V19.5" />
+                        </svg>
+                    </div> 
+                </div>
+                <div (click)="toggleDarkMode()" class="p-3 rounded-full  dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 cursor-pointer toggle-theme">
+                    <svg class="inline-block dark:hidden w-8 h-8">
+                        <use xlink:href="#moon"></use>
+                    </svg>
+                    <svg class="hidden dark:inline-block w-8 h-8">
+                        <use xlink:href="#sun"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 mt-10 mb-10 mx-16">
+           
+            <!-- menu -->
+            <div class="hidden md:flex flex-col pl-4 gap-y-6 ">
+                <div class="logo">
+                    <img src="/img/app-logo.png" alt="">
+                </div>
+                
+                    <div class="space-y-4 text-lg hid dark:text-white text-zinc-900  child:py-1 ">
+                        <a class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors"  
+                            [routerLink]="'/my-account'" 
+                            routerLinkActive="bg-orange-300"
+                            [routerLinkActiveOptions]="{exact: true}">پیشخوان</a>
+                        <a class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors"  
+                            [routerLink]="['./profile']"
+                            routerLinkActive="bg-orange-300"
+                            [routerLinkActiveOptions]="{exact: true}">ویرایش حساب</a>
+                        <a class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors"  
+                            [routerLink]="['./orders']"
+                            routerLinkActive="bg-orange-300"
+                            [routerLinkActiveOptions]="{exact: true}">سفارشات</a>
+                        <!-- <a class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors"  
+                            [routerLink]="'/dashboard'" 
+                            routerLinkActive="bg-orange-300"
+                            [routerLinkActiveOptions]="{exact: true}">جزِئیات حساب</a> -->
+                        <a class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors"  
+                            
+                            routerLinkActive="bg-orange-300"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            (click)="logout()">خروج</a>
+                    </div>
+               
+            </div>
+            <!-- menu mobail -->
+            <div [ngClass]="{'right-0':showNavMobaile}" class="md:hidden -right-50 transition-all fixed px-5 w-50 shadow-md bg-gray-200 dark:bg-zinc-800 top-0 bottom-0  z-50 gap-y-6 ">
+                <div class="logo pb-4 mb-4 flex justify-between mt-8 items-center border-b">
+                    <img src="/app-logo.png" class="w-10" alt="">
+
+                    <svg (click)="toggelNav(false)" class="x-mark w-5 h-5 cursor-pointer text-zinc-600 dark:text-white"
+                    id="x-mark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+                </div>
+                
+                    <div class="space-y-4 text-lg hid dark:text-white text-zinc-900  child:py-1 ">
+                        <a (click)="toggelNav(false)" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors" 
+                        [routerLink]="'/my-account'" 
+                        routerLinkActive="bg-orange-300"
+                        [routerLinkActiveOptions]="{exact: true}">پیشخوان</a>
+                        <a (click)="toggelNav(false)" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors"  
+                        [routerLink]="['./profile']"
+                        routerLinkActive="bg-orange-300"
+                        [routerLinkActiveOptions]="{exact: true}">ویرایش حساب</a>
+                        <a (click)="toggelNav(false)" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors" 
+                        [routerLink]="['./orders']"
+                        routerLinkActive="bg-orange-300"
+                        [routerLinkActiveOptions]="{exact: true}">سفارشات</a>
+                        <a (click)="toggelNav(false)" class="flex items-center gap-x-2.5 h-10 px-3 rounded-lg dark:text-white  hover:bg-orange-300 dark:hover:bg-orange-300/50 transition-colors"  
+                        routerLinkActive="bg-orange-300"
+                        [routerLinkActiveOptions]="{exact: true}"
+                        (click)="logout()">خروج</a>
+                    </div>
+            </div>
+            <div class="lg:col-span-4 md:col-span-3 sm:col-span-2 dark:shadow-none shadow-md bg-white dark:bg-zinc-700 rounded-2xl px-5 pb-5">
+                <div class="md:flex items-center justify-between mt-5 hidden">
+                    <div class=""><h1 class="dark:text-white text-2xl">{{username}} خوش آمدید </h1></div>
+                    <div class=" flex items-center gap-5">
+                        <div [routerLink]="['/']" class="group relative">
+                            <div class=" absolute transition-all top-3 -left-7 w-28 text-center dark:bg-zinc-500 bg-slate-200  group-hover:opacity-100 group-hover:-top-12 opacity-0 text-sm rounded-lg">برکشت به صفحه اصلی</div>
+                           <div  class="p-3 rounded-full dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 cursor-pointer toggle-theme">
+                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.49 12 3.74 8.248m0 0 3.75-3.75m-3.75 3.75h16.5V19.5" />
+                                </svg>
+                            </div> 
+                        </div>
+                        
+                        <div (click)="toggleDarkMode()" class="p-3 rounded-full   dark:text-gray-400 bg-gray-100 dark:bg-zinc-800 cursor-pointer toggle-theme">
+                            <svg class="inline-block dark:hidden w-8 h-8">
+                                <use xlink:href="#moon"></use>
+                            </svg>
+                            <svg class="hidden dark:inline-block w-8 h-8">
+                                <use xlink:href="#sun"></use>
+                            </svg>
+                        </div>
+                       
+                    </div>
+                </div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+  

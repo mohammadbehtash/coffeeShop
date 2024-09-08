@@ -1,0 +1,57 @@
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-5">
+    <div class="lg:col-span-2 bg-gray-100 dark:bg-zinc-800 rounded-lg">
+     <div class="border-b-[1px] border-slate-400 mt-5 mx-5 text-2xl dark:text-white">
+         <p>جزئیات حساب کاربری</p>
+     </div>
+     
+     <form [formGroup]="userForm" class="grid grid-cols-1 md:grid-cols-2 child:p-5 dark:text-white text-lg">
+         
+         <div class=" flex flex-col">
+             <label  for="">شماره موبایل</label>
+             <input formControlName="phone" class="shadow-md outline-none dark:bg-zinc-700 bg-white p-2 rounded-lg mt-3" type="text">
+         </div>
+         <div class="flex flex-col">
+             <label for="">نام</label>
+             <input formControlName="name" class="shadow-md outline-none dark:bg-zinc-700 bg-white p-2 rounded-lg mt-3" type="text">
+         </div>
+       
+         <div class="flex flex-col">
+             <label for="">نام کاربری</label>
+             <input formControlName="username" class="shadow-md outline-none dark:bg-zinc-700 bg-white p-2 rounded-lg mt-3" type="text">
+         </div>
+         <div class="flex flex-col">
+             <label for="">ایمیل</label>
+             <input formControlName="email" class="shadow-md outline-none dark:bg-zinc-700 bg-white p-2 rounded-lg mt-3" type="text">
+         </div>
+
+        
+     </form>
+     <div class="m-5">
+         <button (click)="updatedUserinfo()" class="bg-teal-600 dark:bg-emerald-500 p-5 rounded-xl hover:bg-teal-700 dark:hover:bg-emerald-600 transition-colors text-white tracking-tightest">ثبت اطلاعات</button>
+     </div>
+    </div>
+
+    <div class=" bg-gray-100 dark:bg-zinc-800 rounded-lg">
+     <div class="border-b-[1px] border-slate-400 mt-5 mx-5 text-2xl dark:text-white">
+         <p>تغییر رمز عبور</p>
+     </div>
+     <form [formGroup]="passwordForm" class="child:p-5 dark:text-white text-lg">
+         <div class=" flex flex-col">
+             <label  for="">رمز عبور فعلی</label>
+             <input formControlName="password" class="shadow-md outline-none dark:bg-zinc-700 bg-white p-2 rounded-lg mt-3" type="text">
+         </div>
+         <div class=" flex flex-col">
+             <label  for="">رمز عبور جدید</label>
+             <input formControlName="newpassword" class="shadow-md outline-none dark:bg-zinc-700 bg-white p-2 rounded-lg mt-3" type="text">
+           
+            </div>
+         <div class="mt-5">
+             <button [disabled]="passwordForm.invalid" (click)="updatedPassword()" class="bg-teal-600 dark:bg-emerald-500 p-4 rounded-xl hover:bg-teal-700 dark:hover:bg-emerald-600 transition-colors text-white tracking-tightest">تغییر رمز</button>
+         </div>
+     </form>
+    </div>
+        
+    
+    
+    
+ </div>

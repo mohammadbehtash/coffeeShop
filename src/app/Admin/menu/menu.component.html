@@ -1,0 +1,91 @@
+<div class="mt-4">
+    <div class="">
+
+        <form [formGroup]="menuForm" class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">نام دسته بندی</label>
+                    <input formControlName="title" placeholder="فوری" class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if(menuForm.get('title')?.invalid && (menuForm.get('title')?.dirty || menuForm.get('title')?.touched)){
+                        @if (menuForm.get('title')?.errors?.['required']) {
+                            <p class="text-red-400" >نام اجباری است</p>
+                        }
+                        @if (menuForm.get('title')?.errors?.['minlength']) {
+                            <p class="text-red-400" >   طول نام باید حداقل {{menuForm.get('title')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">مسیر</label>
+                    <input formControlName="href" placeholder="fory " class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if(menuForm.get('href')?.invalid && (menuForm.get('href')?.dirty || menuForm.get('href')?.touched)){
+                        @if (menuForm.get('href')?.errors?.['required']) {
+                            <p class="text-red-400" >مسیر اجباری است</p>
+                        }
+                        @if (menuForm.get('href')?.errors?.['minlength']) {
+                            <p class="text-red-400" >مسیر باید حداقل {{menuForm.get('href')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">پرنت</label>
+                     <select formControlName="parent" (change)="parentId($event)" class="p-3 outline-none rounded-xl shadow" name="" id="">
+                         <option value=''>بدون پرنت</option>
+                         @for (item of parent; track $index) {
+                            <option [value]="item._id">{{item.title}}</option>
+                        } 
+                     </select> 
+                    @if (menuForm.get('parent')?.touched && menuForm.get('parent')?.hasError('required')) {
+                        <p class="text-red-400" >انتخواب دسته بندی الظامی است</p>
+                    }
+                </div>
+               
+            </div>
+           
+        </form>
+        <div class="btn flex items-center gap-5 mt-6">
+            <button (click)="SendMenu()" [ngClass]="{'bg-green-600 hover:bg-green-500':isEdit==false,'bg-blue-600 hover:bg-blue-500':isEdit==true}" class=" text-white p-4 rounded-lg shadow  transition-colors">{{isEdit?'ویرایش منو':'افزودن منو'}}</button>
+        </div>
+    </div>
+    <div class="mt-6">
+        
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+        <thead>
+            
+            <tr class="bg-gray-200 text-right text-gray-700 uppercase text-sm leading-normal">
+               
+                <th class="py-3 px-6 ">تعداد </th>
+                <th class="py-3 px-6 ">نام </th>
+                <th class="py-3 px-6 ">مسیر</th>
+                <th class="py-3 px-6 ">پرینت</th>
+                <th class="py-3 px-6 ">تاریخ ثبت</th>
+                <th class="py-3 px-6 ">عملیات</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            @for (item of menu; track $index) {
+                
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-3 px-6">{{$index+1}}</td>
+                    <td class="py-3 px-6">{{item.title}}</td>
+                    <td class="py-3 px-6">{{item.href}}</td>
+                    <td class="py-3 px-6">{{item.parent?item.parent.title:'__'}}</td>
+                    <td class="py-3 px-6">{{item.createdAt!|jalaliDateSimple}}</td>                   
+                    <td class="py-3 px-6 ">
+                        <div class="flex gap-5">
+                            <button (click)="selectedItem(item._id!,item.title,item.href)" class="bg-blue-600 text-white p-3 rounded-lg shadow hover:bg-blue-500 transition-colors">انتخواب</button>
+                            <button (click)="Delete(item._id!,item.title)" class="text-red-600 p-3 rounded-lg hover:shadow hover:text-white hover:bg-red-500 transition-colors">خذف</button>
+                        </div>
+                    </td>
+                </tr>
+            } 
+            
+        </tbody>
+    </table>
+    <app-confirm-modal-delete></app-confirm-modal-delete>
+</div>
+    </div>
+</div>

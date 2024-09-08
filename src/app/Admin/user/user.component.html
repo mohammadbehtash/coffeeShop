@@ -1,0 +1,175 @@
+<div class="mt-4">
+    <div class="">
+
+        <form [formGroup]="userForm" class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">نام</label>
+                    <input formControlName="name" placeholder="محمد" class="p-3 outline-none rounded-xl shadow"
+                        type="text" name="" id="">
+                    @if (userForm.get('name')?.invalid && (userForm.get('name')?.dirty ||
+                    userForm.get('name')?.touched)) {
+                    @if (userForm.get('name')?.errors?.['required']) {
+                    <p class="text-red-400">نام اجباری است</p>
+                    }
+                    @if (userForm.get('name')?.errors?.['minlength']) {
+                    <p class="text-red-400"> طول نام باید حداقل
+                        {{userForm.get('name')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                    }
+
+                    }
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">نام کاربر</label>
+                    <input formControlName="userName" placeholder="یوسفی " class="p-3 outline-none rounded-xl shadow"
+                        type="text" name="" id="">
+                    @if (userForm.get('userName')?.invalid && (userForm.get('userName')?.dirty ||
+                    userForm.get('userName')?.touched)) {
+                    @if (userForm.get('userName')?.errors?.['required']) {
+                    <p class="text-red-400">نام کاربری اجباری است</p>
+                    }
+                    @if (userForm.get('userName')?.errors?.['minlength']) {
+                    <p class="text-red-400"> طول نام کاربری باید حداقل
+                        {{userForm.get('userName')?.errors?.['minlength'].requiredLength}} کاراکتر باشد.</p>
+                    }
+
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">ایمیل</label>
+                    <input formControlName="email" placeholder="texst@gmail.com"
+                        class="p-3 outline-none rounded-xl shadow" type="text" name="" id="">
+                    @if (userForm.get('email')?.invalid && (userForm.get('email')?.dirty ||
+                    userForm.get('email')?.touched)) {
+                    @if (userForm.get('email')?.errors?.['required']) {
+                    <p class="text-red-400">ایمیل اجباری است</p>
+                    }
+                    @if (userForm.get('email')?.errors?.['email']) {
+                    <p class="text-red-400">یک ایمیل معتبر وارد کنید </p>
+                    }
+                    @if (userForm.get('email')?.errors?.['pattern']) {
+                    <p class="text-red-400">لطفا یک الگوی صحیح برای ایمیل بنویسید</p>
+                    }
+                    }
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">تلفن</label>
+                    <input formControlName="phone" placeholder="09xxxxxxxxx" class="p-3 outline-none rounded-xl shadow"
+                        type="text" name="" id="">
+                    @if (userForm.get('phone')?.invalid && (userForm.get('phone')?.dirty ||
+                    userForm.get('phone')?.touched)) {
+                    @if (userForm.get('phone')?.errors?.['required']) {
+                    <p class="text-red-400">شماره تلفن اجباری است</p>
+                    }
+                    @if (userForm.get('phone')?.errors?.['phone']) {
+                    <p class="text-red-400">یک شماره تلفن معتبر وارد کنید </p>
+                    }
+                    @if (userForm.get('phone')?.errors?.['pattern']) {
+                    <p class="text-red-400"> مثلا : 0921111111 لطفا یک الگوی صحیح برای شماره تلفن بنویسید</p>
+                    }
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-3">
+                    <label class="text-xl" for="">پسورد</label>
+                    <input formControlName="password" placeholder="" class="p-3 outline-none rounded-xl shadow"
+                        type="text" name="" id="">
+                    @if (userForm.get('password')?.invalid && (userForm.get('password')?.dirty ||
+                    userForm.get('password')?.touched)) {
+                    @if (userForm.get('password')?.errors?.['required']) {
+                    <p class="text-red-400"> کلمه عبور اجباری است</p>
+                    }
+                    @if (userForm.get('password')?.errors?.['password']) {
+                    <p class="text-red-400">یک کلمه عبور معتبر وارد کنید </p>
+                    }
+                    @if (userForm.get('password')?.errors?.['pattern']) {
+                    <p class="text-red-400">کلمه عبور باید شامل حروف کوچک و بزرگ و اعداد و یک کاراکتر بخصوص است وباید
+                        طول آن حد اقل 8 کاراکتر باشد</p>
+                    }
+                    }
+                </div>
+            </div>
+        </form>
+        <div class="btn flex items-center gap-5 mt-6">
+            <!-- <button (click)="createUser()" class="bg-green-600 text-white p-4 rounded-lg shadow hover:bg-green-500 transition-colors">افزودن کاربر</button> -->
+            <button (click)="updatedUser()"
+                class="bg-blue-600 text-white p-4 rounded-lg shadow hover:bg-blue-500 transition-colors">ویرایش
+                کاربر</button>
+        </div>
+    </div>
+    <div class="mt-6">
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
+                <thead>
+
+                    <tr class="bg-gray-200 text-right text-gray-700 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 ">تعداد </th>
+                        <th class="py-3 px-6 ">نام </th>
+                        <th class="py-3 px-6 ">نام کاربر</th>
+                        <th class="py-3 px-6 ">ایمیل</th>
+                        <th class="py-3 px-6 ">تلفن</th>
+                        <th class="py-3 px-6 ">نقش</th>
+                        <th class="py-3 px-6 ">تاریخ ثبت نام</th>
+                        <th class="py-3 px-6 ">تاریخ اخرین ویرایش</th>
+                        <th class="py-3 px-6 ">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                    @for (item of users; track $index) {
+
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6">{{$index+1}}</td>
+                        <td class="py-3 px-6">{{item.name}}</td>
+                        <td class="py-3 px-6">{{item.username}}</td>
+                        <td class="py-3 px-6">{{item.email}}</td>
+                        <td class="py-3 px-6">{{item.phone}}</td>
+                        <td class="py-3 px-6 flex items-center justify-around">{{item.role=="ADMIN"?'مدیر':'کاربر'}}
+                            @if (item._id==IAdmin) {
+                            <div class="flex gap-3">
+                                <button
+                                    class="bg-zinc-500  text-white p-3 rounded-lg transition-colors shadow">مدیر</button>
+                                <button
+                                    class="bg-zinc-500   text-white p-3 rounded-lg transition-colors shadow">کاربر</button>
+                            </div>
+                            }@else {
+                            <div class="flex gap-3">
+                                <button (click)="editRoleUser(item._id)" [disabled]="item.role=='ADMIN'"
+                                    [ngClass]="{'bg-zinc-500 ':item.role=='ADMIN','bg-yellow-500 hover:bg-yellow-700':item.role!=='ADMIN'}"
+                                    class=" text-white  p-3 rounded-lg transition-colors shadow">مدیر</button>
+                                <button (click)="editRoleUser(item._id)" [disabled]="item.role=='USER'"
+                                    [ngClass]="{'bg-zinc-500 ':item.role=='USER','bg-yellow-500 hover:bg-yellow-700':item.role!=='USER'}"
+                                    class="bg-yellow-500 text-white hover:bg-yellow-700 p-3 rounded-lg transition-colors shadow">کاربر</button>
+                            </div>
+                            }
+
+                        </td>
+                        <td class="py-3 px-6">{{item.createdAt|jalaliDateSimple }}</td>
+                        <td class="py-3 px-6">{{item.updatedAt|jalaliDateSimple }}</td>
+                        <td class="py-3 px-6 ">
+                            <div class="flex gap-5">
+                                <button (click)="EditUser(item._id,item.name,item.username,item.phone,item.email)"
+                                    class="bg-blue-600 text-white p-3 rounded-lg shadow hover:bg-blue-500 transition-colors">انتخواب</button>
+                                @if (item._id==IAdmin){
+
+                                <button class=" p-3 rounded-lg hover:shadow  ">خذف</button>
+                                }@else {
+
+                                <button (click)="removeUser(item._id,item.username)" class="text-red-600 p-3 rounded-lg hover:shadow hover:text-white hover:bg-red-500 transition-colors">خذف</button>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-confirm-modal-delete></app-confirm-modal-delete>

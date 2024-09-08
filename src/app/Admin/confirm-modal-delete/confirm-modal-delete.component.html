@@ -1,0 +1,15 @@
+@if (showModal) {
+<div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+<div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 class="text-xl font-semibold mb-4">{{ message }}</h2>
+      <p>آیا مطمئن هستید که می‌خواهید {{ itemName }} را حذف کنید؟</p>
+      
+      <div class="flex justify-between mt-6">
+        <button (click)="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2">لغو</button>
+        <button (click)="confirm()" class="bg-red-600 text-white px-4 py-2 rounded">حذف</button>
+      </div>
+    </div>
+    
+</div>
+}
+  
